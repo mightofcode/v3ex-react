@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>
+        您好，{{username}}！欢迎来到
+        {{sitename}}。<br /><br />
+
+        请点击后面的链接以验证您的邮箱地址 -
+        <a
+          target="_blank"
+          href="{{siteUrl}}/verify?email={{email}}&verifyToken={{verifyToken}}"
+        >验证邮箱</a><br /><br />
+
+        如果此帐号不是由您本人注册，请忽略。<br /><br />
+
+        {{sitename}}
+        团队
+      </p>
+    </div>
+  </body>
+</html>

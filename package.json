@@ -1,0 +1,27 @@
+{
+  "name": "v2ex-react",
+  "workspaces": [
+    "modules/*"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^4.3.8",
+    "pretty-quick": "^3.1.0"
+  },
+  "private": true,
+  "dependencies": {
+    "prettier": "^2.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
