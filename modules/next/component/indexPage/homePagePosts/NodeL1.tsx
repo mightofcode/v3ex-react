@@ -13,8 +13,7 @@ const Wrapper = styled.div`
   > :not(:first-child) {
     margin-left: 14px;
   }
-  height: 46px;
-  padding: 12px 16px 0 12px;
+  padding: 12px 16px;
   width: 100%;
 `;
 
@@ -24,9 +23,9 @@ const ItemChoosen = styled.a`
 
   font-weight: bold;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 14px;
   color: #ffffff;
-  padding: 0 6px;
+  padding: 5px 8px;
 
   cursor: pointer;
 
@@ -38,10 +37,10 @@ const ItemChoosen = styled.a`
 const ItemUnChoosen = styled.a`
   font-weight: bold;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 14px;
   color: #34373c;
   cursor: pointer;
-
+  padding: 5px 8px;
   :hover {
     text-decoration: underline;
   }

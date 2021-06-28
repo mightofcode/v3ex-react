@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   padding: 0.5rem 0;
   background: #ffffff;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  border-radius: 3px;
   .exit {
     border-top: 1px solid #f3f3f3;
   }

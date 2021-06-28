@@ -13,9 +13,9 @@ const Wrapper = styled.div`
   > :not(:first-child) {
     margin-left: 16px;
   }
-  height: 46px;
   width: 100%;
-  padding: 12px 16px;
+  padding: 8px 16px;
+  background-color: #f9f9f9;
 `;
 
 const Item = styled.a`

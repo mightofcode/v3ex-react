@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   }
   > :not(:first-child) {
   }
-  background: #f3f3f3;
+  background: #e2e2e2;
   width: 100%;
   height: 1px;
 `;

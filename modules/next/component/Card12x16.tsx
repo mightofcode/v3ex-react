@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   margin: 0;
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-  border-radius: 8px;
+  border-radius: 3px;
   @media screen and (max-width: 865px) {
   }
   > :not(:first-child) {

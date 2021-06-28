@@ -3,12 +3,14 @@ import * as React from "react";
 import Header from "./header";
 import Footer from "./footer/index";
 import Toast from "./toast/index";
+import Divider from "@/component/utils/divider";
 
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #e2e2e2;
 `;
 
 const FlexGrow = styled.div`
@@ -30,6 +32,7 @@ export default function Layout({ children }) {
       <ToastWrapper>
         <Toast />
       </ToastWrapper>
+
       <Footer />
     </Wrapper>
   );

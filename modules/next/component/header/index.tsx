@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   justify-content: center;
   @media screen and (max-width: 865px) {
   }
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 0px 20px -20px rgba(0, 0, 0, 0.52);
 `;
 
 const Item = styled.div`

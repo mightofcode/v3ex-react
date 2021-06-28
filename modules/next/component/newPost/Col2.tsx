@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 const Markdown = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-  border-radius: 8px;
+  border-radius: 3px;
   width: 272px;
   padding: 12px 16px;
 `;
