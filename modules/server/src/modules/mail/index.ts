@@ -5,8 +5,8 @@ import templates from "./templates";
 import { HttpError } from "../../utils/HttpError";
 const util = require("util");
 const client = new Core({
-  accessKeyId: process.env.ALI_MAIL_KEY || "",
-  accessKeySecret: process.env.ALI_MAIL_SECRET || "",
+  accessKeyId: process.env.ALIBABA_MAIL_KEY || "",
+  accessKeySecret: process.env.ALIBABA_MAIL_SECRET || "",
   endpoint: "https://dm.aliyuncs.com",
   apiVersion: "2015-11-23",
 });
@@ -18,7 +18,7 @@ const sendMail = ({ to, text, html, subject }: KeyValue) => {
   return client.request(
     "SingleSendMail",
     {
-      AccountName: process.env.ALI_MAIL_FROM,
+      AccountName: process.env.ALIBABA_MAIL_NAME,
       FromAlias: "V3EX",
       AddressType: 1,
       ReplyToAddress: false,
