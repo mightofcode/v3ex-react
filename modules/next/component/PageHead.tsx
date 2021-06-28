@@ -10,6 +10,7 @@ export default function PageHead({ title = "", captcha = false }) {
         <script src="https://www.recaptcha.net/recaptcha/api.js?hl=zh"></script>
       )}
       <link href="/css/uicons-regular-rounded.css" rel="stylesheet" />
+      <script src="/fix.js" />
     </Head>
   );
 }

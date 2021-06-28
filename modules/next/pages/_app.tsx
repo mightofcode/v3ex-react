@@ -26,6 +26,7 @@ Router.events.on("routeChangeError", () => NProgress.done());
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
+      <script>0</script>
       <Auth />
       <Component {...pageProps} />
     </Provider>
