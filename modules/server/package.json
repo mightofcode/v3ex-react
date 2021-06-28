@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch \"src/**/*\" -e \"js,ts\" --exec \"ts-node src/index.ts\"",
-    "build": "tsc",
-    "copy": "",
-    "deploy": "yarn build && pm2 start ecosystem.config.js --only server",
+    "build": "tsc && yarn copy",
+    "copy": "cp src/modules/mail/templates/*.hbs dist/modules/mail/templates/",
+    "deploy": "yarn build && pm2 start ecosystem.config.js",
     "initMeta": "ts-node src/initMeta.ts"
   },
   "author": "",

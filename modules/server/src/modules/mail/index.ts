@@ -46,7 +46,7 @@ export const sendVerificationEmail = (
 
   const msg = {
     html: text,
-    subject: `${process.env.NEXT_PUBLIC_SITE_NAME}邮箱验证`,
+    subject: `${process.env.SITE_NAME}邮箱验证`,
     text,
     to: email,
   };
