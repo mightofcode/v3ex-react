@@ -46,6 +46,11 @@ export const getServerSideProps = withLoginUser(async (context) => {
     { category: post?.result?.post?.category?.uid },
     context.req.headers.cookie
   );
+  if (!post.result?.post) {
+    return {
+      notFound: true,
+    };
+  }
   //
   return {
     props: {
