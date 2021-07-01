@@ -26,7 +26,7 @@ export default function AppendPage({ post, tabAndCat }) {
 
   return (
     <Wrapper>
-      <Col1 />
+      <Col1 post={post} tabAndCat={tabAndCat} />
       <Divider width={"16px"} />
       <Col2 />
     </Wrapper>

@@ -23,12 +23,12 @@ const Wrapper = styled.div`
 
 const Item = styled.div``;
 
-export default function Col1({}) {
+export default function Col1({ post, tabAndCat }) {
   const router = useRouter();
   useEffect(() => {}, []);
   return (
     <Wrapper>
-      <AppendCard />
+      <AppendCard post={post} tabAndCat={tabAndCat} />
     </Wrapper>
   );
 }

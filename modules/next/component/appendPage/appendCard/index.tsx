@@ -48,13 +48,29 @@ const NormalText = styled.li`
   line-height: 22px;
   color: #696d73;
 `;
-export default function AppendCard({}) {
+export default function AppendCard({ post, tabAndCat }) {
   const router = useRouter();
+
+  let title = post?.title || "";
+  if (title.length > 10) {
+    title = title.substring(0, 10) + "...";
+  }
 
   const breadcrumbs = [
     { text: "首页", href: `/` },
-    { text: "首页", href: `/` },
-    { text: "首页", href: `/` },
+    { text: tabAndCat?.tab?.name, href: `/?tab=${tabAndCat?.tab?.uid}` },
+    {
+      text: tabAndCat?.category?.name,
+      href: `/go/${tabAndCat?.category?.uid}`,
+    },
+    {
+      text: title,
+      href: `/t/${post?.uid}`,
+    },
+    {
+      text: "添加附言",
+      href: null,
+    },
   ];
 
   useEffect(() => {}, []);
@@ -64,7 +80,7 @@ export default function AppendCard({}) {
         <Breadcrumb items={breadcrumbs} />
       </ItemWrapper>
       <DividerLine />
-      <AppendForm />
+      <AppendForm post={post} />
       <DividerLine />
 
       <Divider height={"12px"} />

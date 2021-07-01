@@ -43,7 +43,7 @@ const ButtonWrapper = styled.div`
   align-self: flex-end;
 `;
 
-export default function AppendForm({}) {
+export default function AppendForm({ post }) {
   const router = useRouter();
 
   const [formData, setFromData] = useState({
@@ -71,10 +71,13 @@ export default function AppendForm({}) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const res = await postApi("/api/post/create", formData);
+    const res = await postApi("/api/post/append", {
+      ...formData,
+      postId: post?.uid,
+    });
     if (res.result) {
       setErrors(null);
-      await router.push(`/t/${res?.result?.postId}`);
+      await router.push(`/t/${post?.uid}`);
     } else {
       console.log("error", res.error);
       setErrors(res.error);
