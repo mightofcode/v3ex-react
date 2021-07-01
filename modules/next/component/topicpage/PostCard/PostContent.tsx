@@ -28,14 +28,14 @@ const PostTitle = styled.div`
 `;
 const PostBody = styled.div``;
 
-export default function PostContent({ post }) {
+export default function PostContent({ post, appends }) {
   const router = useRouter();
 
   return (
     <Wrapper>
       <PostTitle>{post.title}</PostTitle>
       <Divider height={"8px"} />
-      <PostMetaInfo post={post} />
+      <PostMetaInfo post={post} appends={appends} />
       <Divider height={"12px"} />
       <PostBody>
         <Markdown md={post.content} />

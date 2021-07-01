@@ -60,7 +60,7 @@ const Append = styled.a`
 `;
 const Img = styled.img``;
 
-export default function PostMetaInfo({ post }) {
+export default function PostMetaInfo({ post, appends }) {
   const router = useRouter();
 
   return (
@@ -71,7 +71,9 @@ export default function PostMetaInfo({ post }) {
       <Divider width={"8px"} />
       <TimeReadable time={post?.createdAt} />
       <Divider width={"8px"} />
-      <Append href={`/append/${post?.uid}`}>APPEND</Append>
+      {appends && appends.length < 3 && (
+        <Append href={`/append/${post?.uid}`}>APPEND</Append>
+      )}
       <DividerSoft width={"100%"} />
       <ViewAndComment postId={post?.uid} commentCount={post?.commentCount} />
       <Divider width={"8px"} />

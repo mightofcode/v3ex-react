@@ -64,7 +64,7 @@ export default function PostCard({ post, tabAndCat, appends }) {
       </ItemWrapper>
       <DividerLine />
       <ItemWrapper>
-        <PostContent post={post} />
+        <PostContent post={post} appends={appends} />
       </ItemWrapper>
       <DividerLine />
       {(appends || []).map((item, index) => (
