@@ -8,6 +8,7 @@ import NodeNav from "@/component/indexPage/nodeNav";
 import Breadcrumb from "@/component/breadcrumb";
 import DividerLine from "@/component/utils/DividerLine";
 import CreatePostForm from "@/component/newPost/createPostCard/createPostForm";
+import Divider from "@/component/utils/divider";
 
 const Wrapper = styled.div`
   display: flex;
