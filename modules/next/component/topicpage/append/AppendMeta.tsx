@@ -5,9 +5,8 @@ import styled from "styled-components";
 import * as React from "react";
 import HomePagePosts from "@/component/indexPage/homePagePosts";
 import NodeNav from "@/component/indexPage/nodeNav";
+import TimeReadable from "@/component/timeReadable";
 import Divider from "@/component/utils/divider";
-import Col1 from "@/component/topicpage/Col1";
-import Col2 from "@/component/topicpage/Col2";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,17 +17,24 @@ const Wrapper = styled.div`
   }
   > :not(:first-child) {
   }
-  width: 100%;
 `;
 
-export default function TopicPage({ post, page, tabAndCat, appends }) {
-  const router = useRouter();
+const Item = styled.div``;
 
+const LightText = styled.div`
+  font-size: 13px;
+  line-height: 16px;
+  color: #c8cbd0;
+`;
+
+export default function AppendMeta({ append, index }) {
+  const router = useRouter();
+  useEffect(() => {}, []);
   return (
     <Wrapper>
-      <Col1 post={post} page={page} tabAndCat={tabAndCat} appends={appends} />
-      <Divider width={"16px"} />
-      <Col2 />
+      <LightText>第{index}条附言</LightText>
+      <Divider width={"8px"} />
+      <TimeReadable time={append?.createdAt} />
     </Wrapper>
   );
 }

@@ -1,6 +1,7 @@
 import { model, Schema, Model, Document } from "mongoose";
 import { User, UserModel } from "./user";
 import { Category, CategoryModel } from "./category";
+import { AppendModel } from "./append";
 
 export interface Post extends Document {
   uid: string;
@@ -58,5 +59,11 @@ PostSchema.virtual("commentCount", {
   foreignField: "post",
   count: true,
 });
+//
+// PostSchema.virtual("appends", {
+//     ref: "Append",
+//     localField: "_id",
+//     foreignField: "post",
+// });
 
 export const PostModel: Model<Post> = model("Post", PostSchema);

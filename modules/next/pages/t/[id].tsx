@@ -17,7 +17,7 @@ const Wrapper = styled.div``;
 
 const FlexWrapper = styled.div``;
 
-export default withLoginUserRedux(({ post, page, tabAndCat }) => {
+export default withLoginUserRedux(({ post, page, tabAndCat, appends }) => {
   const router = useRouter();
 
   return (
@@ -25,7 +25,12 @@ export default withLoginUserRedux(({ post, page, tabAndCat }) => {
       <PageHead title={process.env.NEXT_PUBLIC_SITE_NAME} />
       <Layout>
         <Container>
-          <TopicPage post={post} page={page} tabAndCat={tabAndCat} />
+          <TopicPage
+            post={post}
+            page={page}
+            tabAndCat={tabAndCat}
+            appends={appends}
+          />
         </Container>
       </Layout>
     </>
@@ -55,6 +60,7 @@ export const getServerSideProps = withLoginUser(async (context) => {
   return {
     props: {
       post: post.result?.post || null,
+      appends: post.result?.appends || null,
       page,
       tabAndCat: tabAndCat?.result || null,
     },

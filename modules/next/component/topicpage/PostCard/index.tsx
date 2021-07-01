@@ -8,6 +8,8 @@ import NodeNav from "@/component/indexPage/nodeNav";
 import Breadcrumb from "@/component/breadcrumb";
 import DividerLine from "@/component/utils/DividerLine";
 import PostContent from "@/component/topicpage/PostCard/PostContent";
+import Append from "@/component/topicpage/append";
+import Divider from "@/component/utils/divider";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +34,19 @@ const ItemWrapper = styled.div`
   width: 100%;
 `;
 
-export default function PostCard({ post, tabAndCat }) {
+const FlexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  @media screen and (max-width: 865px) {
+  }
+  > :not(:first-child) {
+  }
+  width: 100%;
+`;
+
+export default function PostCard({ post, tabAndCat, appends }) {
   const router = useRouter();
 
   const breadcrumbs = [
@@ -52,6 +66,13 @@ export default function PostCard({ post, tabAndCat }) {
       <ItemWrapper>
         <PostContent post={post} />
       </ItemWrapper>
+      <DividerLine />
+      {(appends || []).map((item, index) => (
+        <FlexWrapper>
+          <Append append={item} index={index} key={index} />
+          <DividerLine />
+        </FlexWrapper>
+      ))}
     </Wrapper>
   );
 }
