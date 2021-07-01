@@ -7,6 +7,20 @@ import HomePagePosts from "@/component/indexPage/homePagePosts";
 import NodeNav from "@/component/indexPage/nodeNav";
 import { Dropdown } from "semantic-ui-react";
 
+const Wrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  @media screen and (max-width: 865px) {
+  }
+  > :not(:first-child) {
+  }
+  width: 100%;
+`;
+
 const StyledDropdown = styled(Dropdown)`
   height: 38px;
   min-width: 0 !important;
@@ -54,8 +68,49 @@ const StyledDropdown = styled(Dropdown)`
     margin-top: 0 !important;
     margin-right: 10px !important;
   }
+
+  ${(props) =>
+    props.error &&
+    `
+      border-color: #ec4730;
+  `}
 `;
 
-export default function MyDropdown(props) {
-  return <StyledDropdown {...props} />;
+const ErrorMsg = styled.div`
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 16px;
+  color: #ec4730;
+`;
+
+export default function MyDropdown({
+  placeholder,
+  options,
+  value,
+  onChange = (e, data) => {},
+  error,
+}) {
+  const [errorValue, setErrorValue] = useState(error);
+
+  useEffect(() => {
+    setErrorValue(error);
+  }, [error]);
+  const handleChange = (e, data) => {
+    onChange(e, data);
+    setErrorValue(null);
+  };
+
+  return (
+    <Wrapper>
+      <StyledDropdown
+        placeholder={placeholder}
+        options={options}
+        selection
+        search
+        noResultsMessage={"null"}
+        onChange={handleChange}
+      />
+      {errorValue && <ErrorMsg>{errorValue}</ErrorMsg>}
+    </Wrapper>
+  );
 }

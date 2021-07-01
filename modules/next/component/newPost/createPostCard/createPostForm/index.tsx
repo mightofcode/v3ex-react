@@ -127,13 +127,12 @@ export default function CreatePostForm({ tabs }) {
         <MyDropdown
           placeholder={"选择节点"}
           options={items}
-          selection
-          search
-          noResultsMessage={"null"}
           value={tabAndCat}
           onChange={(_, data) => {
+            console.log("data", data);
             setDropdown(data.value);
           }}
+          error={errors?.data?.category}
         />
       </DropdownWrapper>
       <Divider height={"16px"} />

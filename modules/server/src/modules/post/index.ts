@@ -40,6 +40,14 @@ router.all("/post/create", requireAuth, async function (ctx: Context) {
   const postId = await nextPostId();
   const categoryModel = await getCategory(category);
 
+  if (!categoryModel) {
+    throw new HttpError(400, {
+      category: ["未选择板块"],
+    });
+  }
+
+  console.log("categoryModel", categoryModel);
+
   //
   await PostModel.create({
     title,
