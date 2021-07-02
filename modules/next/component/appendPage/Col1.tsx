@@ -5,30 +5,30 @@ import styled from "styled-components";
 import * as React from "react";
 import HomePagePosts from "@/component/indexPage/homePagePosts";
 import NodeNav from "@/component/indexPage/nodeNav";
-import Divider from "@/component/utils/divider";
-import Col1 from "@/component/topicpage/Col1";
-import Col2 from "@/component/topicpage/Col2";
+import AppendCard from "@/component/appendPage/appendCard";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   @media screen and (max-width: 865px) {
   }
   > :not(:first-child) {
   }
   width: 100%;
+  flex-shrink: 1;
+  margin-top: 16px;
 `;
 
-export default function TopicPage({ post, page, tabAndCat, appends }) {
-  const router = useRouter();
+const Item = styled.div``;
 
+export default function Col1({ post, tabAndCat }) {
+  const router = useRouter();
+  useEffect(() => {}, []);
   return (
     <Wrapper>
-      <Col1 post={post} page={page} tabAndCat={tabAndCat} appends={appends} />
-      <Divider width={"16px"} />
-      <Col2 />
+      <AppendCard post={post} tabAndCat={tabAndCat} />
     </Wrapper>
   );
 }

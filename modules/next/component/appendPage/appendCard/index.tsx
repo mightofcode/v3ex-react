@@ -7,9 +7,10 @@ import HomePagePosts from "@/component/indexPage/homePagePosts";
 import NodeNav from "@/component/indexPage/nodeNav";
 import Breadcrumb from "@/component/breadcrumb";
 import DividerLine from "@/component/utils/DividerLine";
-import PostContent from "@/component/topicpage/PostCard/PostContent";
-import Append from "@/component/topicpage/append";
+import Markdown from "@/component/Markdown";
+import AppendForm from "@/component/appendPage/appendCard/AppendForm";
 import Divider from "@/component/utils/divider";
+import { LightText } from "@/component/utils/Text";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,51 +29,68 @@ const Wrapper = styled.div`
   > * {
   }
 `;
-
 const ItemWrapper = styled.div`
   padding: 12px 16px;
   width: 100%;
 `;
 
-const FlexWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  @media screen and (max-width: 865px) {
+const TextWrapper = styled.div`
+  padding: 0px 16px 12px 16px;
+  ::marker {
+    color: red;
+    font-size: 1.5em;
   }
-  > :not(:first-child) {
-  }
-  width: 100%;
 `;
 
-export default function PostCard({ post, tabAndCat, appends }) {
+const AppendBody = styled.div``;
+const NormalText = styled.li`
+  font-size: 14px;
+  line-height: 22px;
+  color: #696d73;
+`;
+export default function AppendCard({ post, tabAndCat }) {
   const router = useRouter();
 
+  let title = post?.title || "";
+  if (title.length > 10) {
+    title = title.substring(0, 10) + "...";
+  }
+
   const breadcrumbs = [
+    { text: "首页", href: `/` },
     { text: tabAndCat?.tab?.name, href: `/?tab=${tabAndCat?.tab?.uid}` },
     {
       text: tabAndCat?.category?.name,
       href: `/go/${tabAndCat?.category?.uid}`,
     },
+    {
+      text: title,
+      href: `/t/${post?.uid}`,
+    },
+    {
+      text: "添加附言",
+      href: null,
+    },
   ];
 
+  useEffect(() => {}, []);
   return (
     <Wrapper>
       <ItemWrapper>
         <Breadcrumb items={breadcrumbs} />
       </ItemWrapper>
       <DividerLine />
-      <ItemWrapper>
-        <PostContent post={post} appends={appends} />
-      </ItemWrapper>
+      <AppendForm post={post} />
       <DividerLine />
-      {(appends || []).map((item, index) => (
-        <FlexWrapper>
-          <Append append={item} index={index} key={index} />
-          <DividerLine />
-        </FlexWrapper>
-      ))}
+
+      <Divider height={"12px"} />
+      <TextWrapper>
+        <LightText>关于为主题创建附言</LightText>
+        <NormalText>
+          请在确有必要的情况下再使用此功能为原主题补充信息
+        </NormalText>
+        <NormalText>每个主题至多可以附加 3 条附言</NormalText>
+      </TextWrapper>
     </Wrapper>
   );
 }

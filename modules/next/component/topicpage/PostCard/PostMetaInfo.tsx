@@ -42,9 +42,25 @@ const Light = styled.div`
   line-height: 16px;
   color: #c8cbd0;
 `;
+
+const Append = styled.a`
+  background-color: #f0f0f0;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 3px 4px;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  color: #666;
+  display: flex;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
+`;
 const Img = styled.img``;
 
-export default function PostMetaInfo({ post }) {
+export default function PostMetaInfo({ post, appends }) {
   const router = useRouter();
 
   return (
@@ -55,6 +71,9 @@ export default function PostMetaInfo({ post }) {
       <Divider width={"8px"} />
       <TimeReadable time={post?.createdAt} />
       <Divider width={"8px"} />
+      {appends && appends.length < 3 && (
+        <Append href={`/append/${post?.uid}`}>APPEND</Append>
+      )}
       <DividerSoft width={"100%"} />
       <ViewAndComment postId={post?.uid} commentCount={post?.commentCount} />
       <Divider width={"8px"} />

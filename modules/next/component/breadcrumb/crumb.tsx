@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   > :not(:first-child) {
     margin-left: 0px;
   }
+  white-space: nowrap;
 `;
 
 const Item = styled.a`

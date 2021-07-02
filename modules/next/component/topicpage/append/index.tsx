@@ -5,9 +5,10 @@ import styled from "styled-components";
 import * as React from "react";
 import HomePagePosts from "@/component/indexPage/homePagePosts";
 import NodeNav from "@/component/indexPage/nodeNav";
-import PostMetaInfo from "@/component/topicpage/PostCard/PostMetaInfo";
-import Divider from "@/component/utils/divider";
 import Markdown from "@/component/Markdown";
+import { LightText } from "@/component/utils/Text";
+import AppendMeta from "@/component/topicpage/append/AppendMeta";
+import DividerLine from "@/component/utils/DividerLine";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,28 +19,28 @@ const Wrapper = styled.div`
   }
   > :not(:first-child) {
   }
+  padding: 5px 0px;
+  background-color: #fffff9;
+  width: 100%;
 `;
 
-const PostTitle = styled.div`
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 32px;
-  color: #34373c;
+const ItemWrapper = styled.div`
+  padding: 0 16px;
 `;
-const PostBody = styled.div``;
 
-export default function PostContent({ post, appends }) {
+export default function Append({ append, index }) {
   const router = useRouter();
-
+  useEffect(() => {}, []);
   return (
     <Wrapper>
-      <PostTitle>{post.title}</PostTitle>
-      <Divider height={"8px"} />
-      <PostMetaInfo post={post} appends={appends} />
-      <Divider height={"12px"} />
-      <PostBody>
-        <Markdown md={post.content} />
-      </PostBody>
+      <ItemWrapper>
+        {" "}
+        <AppendMeta append={append} index={index} />
+      </ItemWrapper>
+      <ItemWrapper>
+        {" "}
+        <Markdown md={append.content} />
+      </ItemWrapper>
     </Wrapper>
   );
 }

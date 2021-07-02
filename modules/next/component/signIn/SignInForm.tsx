@@ -69,7 +69,9 @@ export default function SignInForm({}) {
     const res = await postApi("/api/auth/login", formData);
     if (res.result) {
       setErrors(null);
-      cookieCutter.set("auth-token", res.result.accessToken);
+      const date = new Date();
+      date.setDate(date.getDate() + 30);
+      cookieCutter.set("auth-token", res.result.accessToken, { expires: date });
       window.location.href = "/";
     } else {
       setErrors(res.error);

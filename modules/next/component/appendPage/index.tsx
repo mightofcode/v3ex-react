@@ -6,8 +6,8 @@ import * as React from "react";
 import HomePagePosts from "@/component/indexPage/homePagePosts";
 import NodeNav from "@/component/indexPage/nodeNav";
 import Divider from "@/component/utils/divider";
-import Col1 from "@/component/topicpage/Col1";
-import Col2 from "@/component/topicpage/Col2";
+import Col1 from "@/component/appendPage/Col1";
+import Col2 from "@/component/appendPage/Col2";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,12 +21,12 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-export default function TopicPage({ post, page, tabAndCat, appends }) {
+export default function AppendPage({ post, tabAndCat }) {
   const router = useRouter();
 
   return (
     <Wrapper>
-      <Col1 post={post} page={page} tabAndCat={tabAndCat} appends={appends} />
+      <Col1 post={post} tabAndCat={tabAndCat} />
       <Divider width={"16px"} />
       <Col2 />
     </Wrapper>

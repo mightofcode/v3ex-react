@@ -12,12 +12,13 @@ import { withLoginUser, withLoginUserRedux } from "@/lib/user";
 import PrivacyPolicy from "@/component/privacy-policy";
 import { postApi } from "@/services/nextApi";
 import TopicPage from "@/component/topicpage";
+import AppendPage from "@/component/appendPage";
 
 const Wrapper = styled.div``;
 
 const FlexWrapper = styled.div``;
 
-export default withLoginUserRedux(({ post, page, tabAndCat, appends }) => {
+export default withLoginUserRedux(({ post, tabAndCat }) => {
   const router = useRouter();
 
   return (
@@ -25,12 +26,7 @@ export default withLoginUserRedux(({ post, page, tabAndCat, appends }) => {
       <PageHead title={process.env.NEXT_PUBLIC_SITE_NAME} />
       <Layout>
         <Container>
-          <TopicPage
-            post={post}
-            page={page}
-            tabAndCat={tabAndCat}
-            appends={appends}
-          />
+          <AppendPage post={post} tabAndCat={tabAndCat} />
         </Container>
       </Layout>
     </>
@@ -38,8 +34,7 @@ export default withLoginUserRedux(({ post, page, tabAndCat, appends }) => {
 });
 
 export const getServerSideProps = withLoginUser(async (context) => {
-  let { id, page } = context.query;
-  page = page || 1;
+  let { id } = context.query;
   const post = await postApi(
     "api/post/get",
     { postId: id },
@@ -53,6 +48,7 @@ export const getServerSideProps = withLoginUser(async (context) => {
   );
   if (!post.result?.post) {
     return {
+      //404
       notFound: true,
     };
   }
@@ -60,8 +56,6 @@ export const getServerSideProps = withLoginUser(async (context) => {
   return {
     props: {
       post: post.result?.post || null,
-      appends: post.result?.appends || null,
-      page,
       tabAndCat: tabAndCat?.result || null,
     },
   };

@@ -7,11 +7,12 @@ import { requireAuth } from "../auth";
 import { verifyNotNullParams } from "../../utils/check";
 import { UserModel } from "../../models/user";
 import { CategoryModel } from "../../models/category";
-import { PostModel } from "../../models/post";
+import { Post, PostModel } from "../../models/post";
 import { isNullOrUndefined } from "../../utils/util";
 import * as KvUtil from "../kv";
 import { getCategory, getTab } from "../category";
 import { CommentModel } from "../../models/comment";
+import { AppendModel } from "../../models/append";
 
 const nextPostId = async () => {
   const id: string = await KvUtil.getValueOrDefault("postId", "1");
@@ -59,11 +60,45 @@ router.all("/post/create", requireAuth, async function (ctx: Context) {
   ctx.body = { postId: postId };
 });
 
-router.all("/post/get", async function (ctx: Context) {
-  const { postId } = ctx.request.body;
-  verifyNotNullParams(ctx.request.body, ["postId"]);
+router.all("/post/append", requireAuth, async function (ctx: Context) {
+  const { postId, content } = ctx.request.body;
+  verifyNotNullParams(ctx.request.body, ["postId", "content"]);
+  if (content.length > 1000) {
+    throw new HttpError(400, {
+      title: ["附言必须小于1000个字符"],
+    });
+  }
+
   const user = ctx.user;
-  //
+  const post = await findOnePost(postId);
+  if (!post) {
+    throw new HttpError(400, {
+      postId: ["主题不存在"],
+    });
+  }
+  //console.log("post", post.author._id,user,post.author._id==user._id);
+  if (!post.author._id.equals(user._id)) {
+    throw new HttpError(400, {
+      postId: ["权限错误"],
+    });
+  }
+  const appends = await AppendModel.find({
+    post: post._id,
+  });
+
+  if (appends.length >= 3) {
+    throw new HttpError(400, {
+      postId: ["附言超过三条"],
+    });
+  }
+  await AppendModel.create({
+    content,
+    post,
+  });
+  ctx.body = {};
+});
+
+const findOnePost = async (postId: string) => {
   const post = await PostModel.findOne({
     uid: postId,
   })
@@ -76,14 +111,29 @@ router.all("/post/get", async function (ctx: Context) {
       select: "name uid",
     })
     .populate("commentCount");
+  return post;
+};
+
+router.all("/post/get", async function (ctx: Context) {
+  const { postId } = ctx.request.body;
+  verifyNotNullParams(ctx.request.body, ["postId"]);
+  const user = ctx.user;
+  //
+  const post = await findOnePost(postId);
   //
   if (!post) {
     throw new HttpError(400, {
       postId: ["主题不存在"],
     });
   }
+  const appends = await AppendModel.find({
+    post,
+  })
+    .select("content createdAt")
+    .sort({ createdAt: 1 });
+  //console.log(appends);
   //
-  ctx.body = { post };
+  ctx.body = { post, appends };
 });
 
 router.all("/post/list", async function (ctx: Context) {

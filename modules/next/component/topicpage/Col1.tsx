@@ -26,12 +26,17 @@ const Wrapper = styled.div`
   margin-top: 16px;
 `;
 
-export default function Col1({ post, page, tabAndCat }) {
+export default function Col1({ post, page, tabAndCat, appends }) {
   const router = useRouter();
   const user = useSelector(userSelector);
+
+  useEffect(() => {
+    console.log(post);
+  }, []);
+
   return (
     <Wrapper>
-      <PostCard post={post} tabAndCat={tabAndCat} />
+      <PostCard post={post} tabAndCat={tabAndCat} appends={appends} />
       <Divider height={"16px"} />
       {(post?.commentCount || 0) > 0 ? (
         <CommentsCard postId={post?.uid} page={page} />
